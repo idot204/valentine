@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Gaurav ❤️</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#ffd6e5;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+}
+
+.card{
+    background:white;
+    padding:40px 50px 35px;
+    border-radius:22px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    position:relative;
+    width:320px;
+}
+
+h2{
+    margin-bottom:28px;
+    font-weight:600;
+}
+
+.buttons{
+    position:relative;
+    height:70px;
+}
+
+button{
+    border:none;
+    padding:12px 26px;
+    border-radius:25px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+#yesBtn{
+    background:#ff4d7a;
+    color:white;
+}
+
+#noBtn{
+    position:absolute;
+    left:160px;
+    top:0;
+    background:#eee;
+}
+
+.tiny{
+    font-size:12px;
+    color:#777;
+    margin-top:10px;
+}
+
+/* --- GIF fade in --- */
+
+#dateGif{
+    width:200px;
+    margin-top:18px;
+    border-radius:14px;
+
+    opacity:0;
+    transform:scale(0.95);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+    display:none;
+}
+
+#dateGif.show{
+    display:block;
+    opacity:1;
+    transform:scale(1);
+}
+
+.from{
+    margin-top:8px;
+    font-size:13px;
+    color:#888;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2 id="title">Gaurav, will you be my Valentine? 💌</h2>
+
+    <div class="buttons" id="buttons">
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+
+    <div class="tiny" id="tiny">No seems a bit shy 😈</div>
+
+    <!-- Cat date gif -->
+    <img id="dateGif"
+         src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWdnZzFtYXFodzZtMXg3NGQ5dDU5bzlobmlmMXIwM2E3cTZmZGI1NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kvrvnB158J4fm/giphy.gif"
+         alt="Two cats on a date">
+
+    <div class="from" id="from" style="display:none;">
+        — Poojan 💛
+    </div>
+</div>
+
+<script>
+const noBtn   = document.getElementById("noBtn");
+const card    = document.querySelector(".card");
+const yesBtn  = document.getElementById("yesBtn");
+const dateGif = document.getElementById("dateGif");
+const buttons = document.getElementById("buttons");
+const title   = document.getElementById("title");
+const tiny    = document.getElementById("tiny");
+const from    = document.getElementById("from");
+
+function moveNoButton(){
+
+    const cardRect = card.getBoundingClientRect();
+    const btnRect  = noBtn.getBoundingClientRect();
+
+    const maxX = cardRect.width - btnRect.width - 20;
+    const maxY = cardRect.height - btnRect.height - 80;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top  = y + "px";
+}
+
+noBtn.addEventListener("mouseenter", moveNoButton);
+noBtn.addEventListener("mousemove", moveNoButton);
+
+yesBtn.addEventListener("click", () => {
+
+    buttons.style.display = "none";
+    tiny.style.display = "none";
+
+    title.innerText = "It’s a date, Gaurav 🐾❤️";
+
+    dateGif.style.display = "block";
+
+    // trigger fade-in nicely
+    requestAnimationFrame(() => {
+        dateGif.classList.add("show");
+    });
+
+    from.style.display = "block";
+});
+</script>
+
+</body>
+</html>
